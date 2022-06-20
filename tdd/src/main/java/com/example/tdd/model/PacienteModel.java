@@ -7,13 +7,13 @@ public class PacienteModel {
     private String nome;
     private String cpf;
     private String email;
-    private String telefone;
+    private String telefone = "";
     private String especialidade;
     private String hora;
     private LocalDate dataAgenda;
     private LocalDate dataConsulta;
 
-    public PacienteModel(String id, String nome, String cpf, String email, String telefone, String especialidade, String hora, LocalDate dataAgenda, LocalDate dataConsulta) {
+    public PacienteModel() {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;

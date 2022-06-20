@@ -50,8 +50,8 @@ public class PacienteServicoTest {
     public void setup(){
         LocalDate dataAgenda = LocalDate.parse("2022-11-10");
         LocalDate dataConsulta = LocalDate.parse("2022-11-20");
-        PacienteModel pacienteModel = new PacienteModel("1","Oliver","1234578910",
-                "oliver@gamil.com","123456789","odontopediatria","12:30",dataAgenda,dataConsulta);
+        PacienteModel pacienteModel = new PacienteModel(
+        );
 
         //Mockito usado para simular Database
         Mockito.when(pacienteRepository.findByReserveName(pacienteModel.getNome()))
