@@ -8,12 +8,12 @@ public class TelefoneValidatorTest {
     private TelefoneValidador underTest;
 
     @BeforeEach
-    void setUp(){
+    public void setUp(){
         underTest = new TelefoneValidador();
     }
 
     @Test
-    void itShouldValidadorTelefoneNum(){
+    public void itShouldValidadorTelefoneNum(){
 
     }
 }
