@@ -42,7 +42,7 @@ public class PacienteServicoTest {
         int dias = pacienteServico.diasCalculadorComDatabase(nome);
 
         //int i = 10;
-        Assertions.assertEquals(dias, 10);
+        Assertions.assertEquals(dias, 15);
 
     }
 
