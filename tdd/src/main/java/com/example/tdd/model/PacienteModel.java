@@ -61,7 +61,11 @@ public class PacienteModel {
         return telefone;
     }
 
-    public void setTelefone(String telefone) {
+    public void setTelefone(String telefone)  {
+        if(!telefone.matches("\\d{5}-\\d{4}")){
+            throw new IllegalArgumentException("Telefone inválido");
+        }
+
         this.telefone = telefone;
     }
 
