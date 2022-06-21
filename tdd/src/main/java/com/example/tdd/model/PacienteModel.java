@@ -1,6 +1,8 @@
 package com.example.tdd.model;
 
 import java.time.LocalDate;
+import java.util.List;
+
 
 public class PacienteModel {
     private String id;
@@ -12,7 +14,10 @@ public class PacienteModel {
     private String hora;
     private LocalDate dataAgenda;
     private LocalDate dataConsulta;
+    private List<EnderecoModel> endereco;
+    private List<ConsultaModel> consultaModels;
 
+    /*
     public PacienteModel() {
         this.id = id;
         this.nome = nome;
@@ -24,6 +29,7 @@ public class PacienteModel {
         this.dataAgenda = dataAgenda;
         this.dataConsulta = dataConsulta;
     }
+    */
 
     public String getId() {
         return id;
@@ -99,5 +105,22 @@ public class PacienteModel {
 
     public void setDataConsulta(LocalDate dataConsulta) {
         this.dataConsulta = dataConsulta;
+    }
+
+    public List<EnderecoModel> getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(List<EnderecoModel> endereco) {
+        this.endereco = endereco;
+    }
+
+    public List<ConsultaModel> getConsultaModels() {
+        return consultaModels;
+    }
+
+
+    public void setConsultaModels(List<ConsultaModel> consultaModels) {
+        this.consultaModels = consultaModels;
     }
 }
