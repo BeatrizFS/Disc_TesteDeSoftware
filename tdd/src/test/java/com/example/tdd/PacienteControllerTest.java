@@ -8,7 +8,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -32,8 +32,8 @@ public class PacienteControllerTest {
 
     @Test
     public void pacienteTesteSave() throws Exception {
-        LocalDate dataAgenda = LocalDate.parse("2022-11-10");
-        LocalDate dataConsulta = LocalDate.parse("2022-11-20");
+        //LocalDate dataAgenda = LocalDate.parse("2022-11-10");
+        //LocalDate dataConsulta = LocalDate.parse("2022-11-20");
         PacienteModel pacienteModel = new PacienteModel(
         );
 

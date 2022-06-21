@@ -14,7 +14,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.context.annotation.Bean;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
 import java.util.Optional;
 
 @RunWith(SpringRunner.class)
@@ -48,8 +48,8 @@ public class PacienteServicoTest {
 
     @Before
     public void setup(){
-        LocalDate dataAgenda = LocalDate.parse("2022-11-10");
-        LocalDate dataConsulta = LocalDate.parse("2022-11-20");
+        //LocalDate dataAgenda = LocalDate.parse("2022-11-10");
+        //LocalDate dataConsulta = LocalDate.parse("2022-11-20");
         PacienteModel pacienteModel = new PacienteModel(
         );
 

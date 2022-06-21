@@ -9,9 +9,11 @@ public class ConsultaModel {
     private String hora;
     private LocalDate dataAgenda;
     private LocalDate dataConsulta;
+    private String protocolo;
 
-    public ConsultaModel(String medico, String especialidade, String hora, LocalDate dataAgenda,
-            LocalDate dataConsulta) {
+
+	public ConsultaModel(String medico, String especialidade, String hora, LocalDate dataAgenda,
+            LocalDate dataConsulta, String protocolo) {
         this.medico = medico;
         this.especialidade = especialidade;
         this.hora = hora;
@@ -59,6 +61,13 @@ public class ConsultaModel {
         this.dataConsulta = dataConsulta;
     }
 
-    
+
+	public String getProtocolo() {
+		return protocolo;
+	}
+
+	public void setProtocolo(String protocolo) {
+		this.protocolo = protocolo;
+	}
 
 }

@@ -1,9 +1,5 @@
 package com.example.tdd.servico;
 
-
-
-public class RegistrationService {
+public class ConsultaService {
     
-
-
 }
