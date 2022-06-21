@@ -11,5 +11,10 @@ public class PacienteServiceImpl implements PacienteService{
 	public PacienteServiceImpl(PacientesRepository pacientesRepository){
         this.pacientesRepository = pacientesRepository;
     }
+
+    @Override
+    public PacienteModel salvar(PacienteModel pacienteModel) {
+        return pacientesRepository.save(pacienteModel);
+    }
     
 }
