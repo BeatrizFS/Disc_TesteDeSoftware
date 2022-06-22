@@ -27,4 +27,5 @@ public class PacienteServiceImpl implements PacienteService{
         return pacientesRepository.save(pacienteModel);
     }
     
+    
 }

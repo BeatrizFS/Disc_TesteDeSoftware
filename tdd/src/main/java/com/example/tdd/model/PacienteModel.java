@@ -16,6 +16,7 @@ public class PacienteModel {
     private LocalDate dataConsulta;
     private List<EnderecoModel> endereco;
     private List<ConsultaModel> consultaModels;
+    private List<TelefoneModel> telefoneModels;
 
     /*
     public PacienteModel() {
@@ -31,7 +32,8 @@ public class PacienteModel {
     }
     */
 
-    public String getId() {
+
+	public String getId() {
         return id;
     }
 
@@ -123,4 +125,17 @@ public class PacienteModel {
     public void setConsultaModels(List<ConsultaModel> consultaModels) {
         this.consultaModels = consultaModels;
     }
+
+    public List<TelefoneModel> getTelefoneModels() {
+		return telefoneModels;
+	}
+
+    /*
+	public void setTelefoneModels(List<TelefoneModel> list) {
+		this.telefoneModels = list;
+	}
+
+	public void setTelefoneModels(List<telefoneModel> asList) {
+	}
+    */
 }

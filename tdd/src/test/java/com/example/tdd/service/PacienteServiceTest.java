@@ -3,6 +3,7 @@ package com.example.tdd.service;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+//import java.util.Arrays;
 import java.util.Optional;
 
 import org.junit.Before;
@@ -21,6 +22,8 @@ public class PacienteServiceTest{
 
     private static final String NOME = "Oliver Santos";
     private static final String CPF = "12345678912";
+    private static final String DDD = "55";
+    private static final String NUMERO = "98765432110";
 
 
     @MockBean
@@ -29,6 +32,7 @@ public class PacienteServiceTest{
     private PacienteServiceImpl sut;
 
     private PacienteModel pacienteModel;
+    private com.example.tdd.service.telefoneModel telefoneModel;
 
     @Before
     public void setup() throws Exception{
@@ -36,6 +40,12 @@ public class PacienteServiceTest{
         pacienteModel = new PacienteModel();
         pacienteModel.setNome(NOME);
         pacienteModel.setCpf(CPF);
+
+        telefoneModel = new  telefoneModel();
+        telefoneModel.setDdd(DDD);
+        telefoneModel.setNumero(NUMERO);
+
+        //pacienteModel.setTelefoneModels(Arrays.asList(telefoneModel));
 
         when(pacientesRepository.findByCpf(CPF)).thenReturn(Optional.empty());
 
@@ -56,6 +66,9 @@ public class PacienteServiceTest{
     
         sut.salvar(pacienteModel);
     }
+
+    //Não salva pacientes com mesmo Telefone
+    
 
 
 }
