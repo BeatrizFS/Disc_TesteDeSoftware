@@ -15,14 +15,14 @@ public class PacienteTest {
         assertEquals(esperado, obtido);
     }
 
-    /* 
+    
     @Test
     public void testSetTelefoneInvalidoExcecao(){
         final PacienteModel instance = new PacienteModel();
         final String invalido = "123";
         assertThrows(IllegalArgumentException.class,() -> instance.setTelefone(invalido));
     }
-    */
+    
     
     @Test
     public void testSetTelefoneInvalidoNaoArmazena(){
