@@ -42,7 +42,7 @@ public class PacienteModel {
     }
 
     public void setId(String id) {
-        if(!id.matches("\\d{5}.\\d{1}")){
+        if(!id.matches("\\d{5}-\\d{1}")){
             throw new IllegalArgumentException("Id inválido");
         }
         this.id = id;
@@ -53,7 +53,11 @@ public class PacienteModel {
     }
 
     public void setNome(String nome) {
+        if(!nome.matches("")){
+            throw new IllegalArgumentException("Nome nulo");
+        }
         this.nome = nome;
+    
     }
 
     public String getCpf() {
@@ -61,7 +65,7 @@ public class PacienteModel {
     }
 
     public void setCpf(String cpf) {
-        if(!cpf.matches("\\d{3}.\\d{3}.\\d{3}=\\d{2}")){
+        if(!cpf.matches("\\d{3}.\\d{3}.\\d{3}-\\d{2}")){
             throw new IllegalArgumentException("CPF inválido");
         }
 
@@ -81,7 +85,7 @@ public class PacienteModel {
     }
 
     public void setTelefone(String telefone)  {
-        if(!telefone.matches("\\d{5}-\\d{4}")){
+        if(!telefone.matches("\\d{2}\\d{5}-\\d{4}")){
             throw new IllegalArgumentException("Telefone inválido");
         }
 

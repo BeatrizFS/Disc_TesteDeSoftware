@@ -9,7 +9,7 @@ public class PacienteTest {
     @Test
     public void testSetTelefoneValido(){
         final PacienteModel instance = new PacienteModel();
-        final String esperado = "+5581912345678";
+        final String esperado = "8191234-5678";
         instance.setTelefone(esperado);
         final String obtido = instance.getTelefone();
         assertEquals(esperado, obtido);
@@ -52,13 +52,6 @@ public class PacienteTest {
         assertNotEquals(invalido, obtido);
     }
 
-    @Test
-    public void testNomeVazio(){
-        final PacienteModel instance = new PacienteModel();
-        final String nulo = null;
-        assertThrows(IllegalArgumentException.class,()-> instance.setNome(nulo));
-
-    }
 
     @Test
     public void testNomeEmBranco(){
