@@ -1,8 +1,11 @@
 package com.example.tdd.servico.impl;
 
+import java.util.Optional;
+
 import com.example.tdd.model.PacienteModel;
 import com.example.tdd.repository.PacientesRepository;
 import com.example.tdd.servico.PacienteService;
+import com.example.tdd.servico.exception.CPFUnicoException;
 
 public class PacienteServiceImpl implements PacienteService{
     
@@ -13,7 +16,14 @@ public class PacienteServiceImpl implements PacienteService{
     }
 
     @Override
-    public PacienteModel salvar(PacienteModel pacienteModel) {
+    public PacienteModel salvar(PacienteModel pacienteModel) throws CPFUnicoException {
+
+        Optional<PacienteModel> optional = pacientesRepository.findByCpf(pacienteModel.getCpf());
+
+        if( optional.isPresent() ){
+            throw new CPFUnicoException();
+        }
+        
         return pacientesRepository.save(pacienteModel);
     }
     
