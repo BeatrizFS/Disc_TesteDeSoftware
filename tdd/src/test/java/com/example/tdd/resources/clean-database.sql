@@ -1,0 +1,9 @@
+DELETE FROM telefone
+DELETE FROM endereco
+DELETE FROM paciente
+DELETE FROM consulta
+
+ALTER SEQUENCE telefone_id_seq RESTART WITH 1;
+ALTER SEQUENCE endereco_id_seq RESTART WITH 1;
+ALTER SEQUENCE paciente_id_seq RESTART WITH 1;
+ALTER SEQUENCE consulta_id_seq RESTART WITH 1;

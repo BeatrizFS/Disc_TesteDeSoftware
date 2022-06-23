@@ -48,7 +48,7 @@ public class PacienteModel {
     private List<TelefoneModel> telefoneModel;
 
     @OneToMany(mappedBy = "paciente")
-    private List<ConsultaModel> consultaModels;
+    private List<ConsultaModel> consultaModel;
 
     //Strings seram movidas para o ConsultaModel
     private LocalDate dataAgenda;
@@ -164,12 +164,12 @@ public class PacienteModel {
     }
 
     public List<ConsultaModel> getConsultaModels() {
-        return consultaModels;
+        return consultaModel;
     }
 
 
-    public void setConsultaModels(List<ConsultaModel> consultaModels) {
-        this.consultaModels = consultaModels;
+    public void setConsultaModels(List<ConsultaModel> consultaModel) {
+        this.consultaModel = consultaModel;
     }
 
     @Override
