@@ -49,6 +49,7 @@ public class PacienteServiceTest{
         pacienteModel.setTelefoneModel(Arrays.asList(telefoneModel));
 
         when(pacientesRepository.findByCpf(CPF)).thenReturn(Optional.empty());
+        when(pacientesRepository.findByTelefoneDDDeNumero(DDD, NUMERO)).thenReturn(Optional.empty());
 
     }
 
@@ -73,11 +74,6 @@ public class PacienteServiceTest{
         when(pacientesRepository.findByTelefoneDDDeNumero(DDD, NUMERO)).thenReturn(Optional.of(pacienteModel));
 
         sut.salvar(pacienteModel);
-    }
-
-    @Test
-    public void naoDeveSalvarDuasPessoasComMesmoTelefone() throws Exception{
-        when(pacientesRepository.findByTelefoneDDDeNumero(DDD, NUMERO)).thenReturn(Optional.of(pacienteModel));
     }
 
 }

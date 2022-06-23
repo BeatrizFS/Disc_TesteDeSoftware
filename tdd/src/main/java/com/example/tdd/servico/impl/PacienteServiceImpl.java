@@ -7,6 +7,7 @@ import com.example.tdd.model.TelefoneModel;
 import com.example.tdd.repository.PacientesRepository;
 import com.example.tdd.servico.PacienteService;
 import com.example.tdd.servico.exception.CPFUnicoException;
+import com.example.tdd.servico.exception.TelefoneUnicoException;
 
 public class PacienteServiceImpl implements PacienteService{
     
@@ -17,7 +18,7 @@ public class PacienteServiceImpl implements PacienteService{
     }
 
     @Override
-    public PacienteModel salvar(PacienteModel pacienteModel) throws CPFUnicoException {
+    public PacienteModel salvar(PacienteModel pacienteModel) throws CPFUnicoException, TelefoneUnicoException {
 
         Optional<PacienteModel> optional = pacientesRepository.findByCpf(pacienteModel.getCpf());
 
@@ -25,6 +26,14 @@ public class PacienteServiceImpl implements PacienteService{
             throw new CPFUnicoException();
         }
 
+        final String ddd = pacienteModel.getTelefoneModel().get(0).getDdd();
+        final String numero = pacienteModel.getTelefoneModel().get(0).getNumero();
+        optional = pacientesRepository.findByTelefoneDDDeNumero(ddd, numero);
+
+        if(optional.isPresent()){
+            throw new TelefoneUnicoException();
+        }
+        
         return pacientesRepository.save(pacienteModel);
     }
 
