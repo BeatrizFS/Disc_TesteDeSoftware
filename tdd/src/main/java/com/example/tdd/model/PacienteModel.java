@@ -10,13 +10,13 @@ public class PacienteModel {
     private String cpf;
     private String email;
     private String telefone = "";
-    private String especialidade;
-    private String hora;
+    private List<EnderecoModel> endereco;
+
+    //Strings seram movidas para o ConsultaModel
     private LocalDate dataAgenda;
     private LocalDate dataConsulta;
-    private List<EnderecoModel> endereco;
     private List<ConsultaModel> consultaModels;
-    private List<TelefoneModel> telefoneModels;
+    private List<TelefoneModel> telefoneModel;
 
     /*
     public PacienteModel() {
@@ -32,7 +32,15 @@ public class PacienteModel {
     }
     */
 
-        /*
+    public List<TelefoneModel> getTelefoneModel() {
+        return telefoneModel;
+    }
+
+    public void setTelefoneModel(List<TelefoneModel> telefoneModel) {
+        this.telefoneModel = telefoneModel;
+    }
+
+    /*
             if(!telefone.matches("\\d{5}-\\d{4}")){
             throw new IllegalArgumentException("Telefone inválido");
         }
@@ -53,11 +61,12 @@ public class PacienteModel {
     }
 
     public void setNome(String nome) {
+        /*
         if(!nome.matches("")){
             throw new IllegalArgumentException("Nome nulo");
-        }
+
         this.nome = nome;
-    
+        */
     }
 
     public String getCpf() {
@@ -65,10 +74,11 @@ public class PacienteModel {
     }
 
     public void setCpf(String cpf) {
+        
         if(!cpf.matches("\\d{3}.\\d{3}.\\d{3}-\\d{2}")){
             throw new IllegalArgumentException("CPF inválido");
         }
-
+        
         this.cpf = cpf;
     }
 
@@ -90,22 +100,6 @@ public class PacienteModel {
         }
 
         this.telefone = telefone;
-    }
-
-    public String getEspecialidade() {
-        return especialidade;
-    }
-
-    public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
-    }
-
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
     }
 
     public LocalDate getDataAgenda() {
@@ -141,16 +135,6 @@ public class PacienteModel {
         this.consultaModels = consultaModels;
     }
 
-    public List<TelefoneModel> getTelefoneModels() {
-		return telefoneModels;
-	}
-
-    /*
-	public void setTelefoneModels(List<TelefoneModel> list) {
-		this.telefoneModels = list;
-	}
-
-	public void setTelefoneModels(List<telefoneModel> asList) {
-	}
-    */
+    
+    
 }

@@ -8,4 +8,6 @@ public interface PacientesRepository {
 
     Optional<PacienteModel> findByCpf(String cpf);
     
+
+    Optional<PacienteModel> findByTelefoneDDDeNumero(String ddd, String numero);
 }

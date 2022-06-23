@@ -3,17 +3,18 @@ package com.example.tdd.service;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-//import java.util.Arrays;
+import java.util.Arrays;
 import java.util.Optional;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import com.example.tdd.model.PacienteModel;
+import com.example.tdd.model.TelefoneModel;
 import com.example.tdd.repository.PacientesRepository;
 import com.example.tdd.servico.exception.CPFUnicoException;
+import com.example.tdd.servico.exception.TelefoneUnicoException;
 import com.example.tdd.servico.impl.PacienteServiceImpl;
 
 
@@ -21,9 +22,9 @@ import com.example.tdd.servico.impl.PacienteServiceImpl;
 public class PacienteServiceTest{
 
     private static final String NOME = "Oliver Santos";
-    private static final String CPF = "12345678912";
+    private static final String CPF = "123.456.789-12";
     private static final String DDD = "55";
-    private static final String NUMERO = "98765432110";
+    private static final String NUMERO = "123456789";
 
 
     @MockBean
@@ -32,7 +33,7 @@ public class PacienteServiceTest{
     private PacienteServiceImpl sut;
 
     private PacienteModel pacienteModel;
-    private com.example.tdd.service.telefoneModel telefoneModel;
+    private TelefoneModel telefoneModel;
 
     @Before
     public void setup() throws Exception{
@@ -41,11 +42,11 @@ public class PacienteServiceTest{
         pacienteModel.setNome(NOME);
         pacienteModel.setCpf(CPF);
 
-        telefoneModel = new  telefoneModel();
+        telefoneModel = new TelefoneModel();
         telefoneModel.setDdd(DDD);
         telefoneModel.setNumero(NUMERO);
-
-        //pacienteModel.setTelefoneModels(Arrays.asList(telefoneModel));
+        
+        pacienteModel.setTelefoneModel(Arrays.asList(telefoneModel));
 
         when(pacientesRepository.findByCpf(CPF)).thenReturn(Optional.empty());
 
@@ -53,7 +54,7 @@ public class PacienteServiceTest{
 
     //Salvar paciente
     @Test
-    public void deveSalvarPacientesNoRepositorio() throws Exception{
+    public void deveSalvarPacientesNoRepositorio() throws Exception, TelefoneUnicoException{
         sut.salvar(pacienteModel);
 
         verify(pacientesRepository).save(pacienteModel);
@@ -61,14 +62,22 @@ public class PacienteServiceTest{
 
     //Não salvar pacientes com mesmo CPF
     @Test(expected = CPFUnicoException.class)
-    public void naoDeveSalvarDuasPessoasComMesmoCPF() throws Exception{
+    public void naoDeveSalvarDuasPessoasComMesmoCPF() throws Exception, TelefoneUnicoException{
         when(pacientesRepository.findByCpf(CPF)).thenReturn(Optional.of(pacienteModel));
     
         sut.salvar(pacienteModel);
     }
-
-    //Não salva pacientes com mesmo Telefone
     
+    @Test(expected = TelefoneUnicoException.class)
+    public void naoDeveSalvaDuasPessoasComMesmoTelefone() throws Exception, TelefoneUnicoException{
+        when(pacientesRepository.findByTelefoneDDDeNumero(DDD, NUMERO)).thenReturn(Optional.of(pacienteModel));
 
+        sut.salvar(pacienteModel);
+    }
+
+    @Test
+    public void naoDeveSalvarDuasPessoasComMesmoTelefone() throws Exception{
+        when(pacientesRepository.findByTelefoneDDDeNumero(DDD, NUMERO)).thenReturn(Optional.of(pacienteModel));
+    }
 
 }

@@ -2,13 +2,14 @@ package com.example.tdd.model;
 
 public class TelefoneModel {
     private String ddd;
-	private String numero;
-
-
-	public TelefoneModel(String ddd, String numero) {
+	
+	public TelefoneModel() {
 		this.ddd = ddd;
 		this.numero = numero;
 	}
+
+	private String numero;
+
 
     public String getDdd() {
 		return ddd;

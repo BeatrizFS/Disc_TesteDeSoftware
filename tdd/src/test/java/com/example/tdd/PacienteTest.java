@@ -1,10 +1,16 @@
 package com.example.tdd;
 
 import com.example.tdd.model.PacienteModel;
+import com.example.tdd.repository.PacientesRepository;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PacienteTest {
+
+    @Autowired
+    PacientesRepository pacientesRepository;
 
     @Test
     public void testSetTelefoneValido(){
@@ -79,4 +85,7 @@ public class PacienteTest {
         assertNotEquals(invalido, obtido);
     }
     */
+
+
+
 }
