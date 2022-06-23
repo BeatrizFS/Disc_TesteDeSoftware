@@ -2,8 +2,24 @@ package com.example.tdd.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "consulta")
 public class ConsultaModel {
     
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long codigo;
+    
+    public Long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
     private String medico;
     private String especialidade;
     private String hora;
@@ -11,14 +27,19 @@ public class ConsultaModel {
     private LocalDate dataConsulta;
     private String protocolo;
 
-
-	public ConsultaModel(String medico, String especialidade, String hora, LocalDate dataAgenda,
+	@ManyToOne
+	//Identifica o relacionamento
+	@JoinColumn(name = "codigo_paciente")
+	private PacienteModel pacienteModel;
+    
+    public ConsultaModel(String medico, String especialidade, String hora, LocalDate dataAgenda,
             LocalDate dataConsulta, String protocolo) {
         this.medico = medico;
         this.especialidade = especialidade;
         this.hora = hora;
         this.dataAgenda = dataAgenda;
         this.dataConsulta = dataConsulta;
+
     }
 
     public String getMedico() {
@@ -70,4 +91,18 @@ public class ConsultaModel {
 		this.protocolo = protocolo;
 	}
 
+    @Override
+    public boolean equals(Object o){
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+
+        ConsultaModel consultaModel = (ConsultaModel) o;
+
+        return getCodigo() != null ? getCodigo().equals(consultaModel.getCodigo()) : consultaModel.getCodigo() == null;
+    }
+
+    @Override
+    public int hashCode(){
+        return getCodigo() != null ? getClass().hashCode() : 0;
+    }
 }

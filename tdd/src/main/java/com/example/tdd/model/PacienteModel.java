@@ -3,20 +3,57 @@ package com.example.tdd.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "pacientes")
 public class PacienteModel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long codigo;
+    
+    public Long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
+
+    @Column(length = 7, nullable = false)
     private String id;
+
+    @Column(length = 90, nullable = false)
     private String nome;
+
+    @Column(length = 14, nullable = false)
     private String cpf;
+
+    @Column(length = 60, nullable = false)
     private String email;
+
     private String telefone = "";
+    
+    @OneToMany(mappedBy = "paciente")
     private List<EnderecoModel> endereco;
+
+    @OneToMany(mappedBy = "paciente")
+    private List<TelefoneModel> telefoneModel;
+
+    @OneToMany(mappedBy = "paciente")
+    private List<ConsultaModel> consultaModels;
 
     //Strings seram movidas para o ConsultaModel
     private LocalDate dataAgenda;
     private LocalDate dataConsulta;
-    private List<ConsultaModel> consultaModels;
-    private List<TelefoneModel> telefoneModel;
+    
 
     /*
     public PacienteModel() {
@@ -135,6 +172,19 @@ public class PacienteModel {
         this.consultaModels = consultaModels;
     }
 
-    
+    @Override
+    public boolean equals(Object o){
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+
+        PacienteModel pacienteModel = (PacienteModel) o;
+
+        return getCodigo() != null ? getCodigo().equals(pacienteModel.getCodigo()) : pacienteModel.getCodigo() == null;
+    }
+
+    @Override
+    public int hashCode(){
+        return getCodigo() != null ? getClass().hashCode() : 0;
+    }
     
 }
