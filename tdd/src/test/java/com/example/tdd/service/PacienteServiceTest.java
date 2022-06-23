@@ -2,9 +2,10 @@ package com.example.tdd.service;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
+import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Arrays;
 import java.util.Optional;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +15,7 @@ import com.example.tdd.model.PacienteModel;
 import com.example.tdd.model.TelefoneModel;
 import com.example.tdd.repository.PacientesRepository;
 import com.example.tdd.servico.exception.CPFUnicoException;
+import com.example.tdd.servico.exception.TelefoneNaoEncontradoException;
 import com.example.tdd.servico.exception.TelefoneUnicoException;
 import com.example.tdd.servico.impl.PacienteServiceImpl;
 
@@ -68,12 +70,31 @@ public class PacienteServiceTest{
     
         sut.salvar(pacienteModel);
     }
+
+    @Test(expected = TelefoneNaoEncontradoException.class)
+    public void deveRetornar_NaoEncontrado_SeNaoHouverTelefone() throws Exception {
+        sut.buscaPorTelefone(telefoneModel);
+
+    }
     
     @Test(expected = TelefoneUnicoException.class)
     public void naoDeveSalvaDuasPessoasComMesmoTelefone() throws Exception, TelefoneUnicoException{
         when(pacientesRepository.findByTelefoneDDDeNumero(DDD, NUMERO)).thenReturn(Optional.of(pacienteModel));
 
         sut.salvar(pacienteModel);
+    }
+
+    @Test
+    public void ProcurarPacientePeloTelefone() throws Exception {
+        when(pacientesRepository.findByTelefoneDDDeNumero(DDD, NUMERO)).thenReturn(Optional.of(pacienteModel));
+        
+        PacienteModel pacienteTeste = sut.buscaPorTelefone(telefoneModel);
+
+        verify(pacientesRepository).findByTelefoneDDDeNumero(DDD, NUMERO);
+
+        assertThat(pacienteTeste).isNotNull();
+        assertThat(pacienteTeste).isEqualTo(NOME);
+        assertThat(pacienteTeste).isEqualTo(CPF);
     }
 
 }

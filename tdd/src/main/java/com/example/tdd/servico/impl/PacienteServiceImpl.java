@@ -7,6 +7,7 @@ import com.example.tdd.model.TelefoneModel;
 import com.example.tdd.repository.PacientesRepository;
 import com.example.tdd.servico.PacienteService;
 import com.example.tdd.servico.exception.CPFUnicoException;
+import com.example.tdd.servico.exception.TelefoneNaoEncontradoException;
 import com.example.tdd.servico.exception.TelefoneUnicoException;
 
 public class PacienteServiceImpl implements PacienteService{
@@ -38,8 +39,9 @@ public class PacienteServiceImpl implements PacienteService{
     }
 
     @Override
-    public PacienteModel buscaPorTelefone(TelefoneModel telefoneModel) {
-        return null;
+    public PacienteModel buscaPorTelefone(TelefoneModel telefoneModel) throws TelefoneNaoEncontradoException {
+        Optional<PacienteModel> optional = pacientesRepository.findByTelefoneDDDeNumero(telefoneModel.getDdd(), telefoneModel.getNumero());
+        return optional.orElseThrow(() -> new TelefoneNaoEncontradoException());
     }
     
     
